@@ -51,7 +51,7 @@ To reduce the number of false positives, I kept a buffer of 5 frames. The vehicl
 
 Example of heatmap generated for detected vehicle is shown in below:
 
-![heatmap](output_images/heatmap_examples.png)
+![heatmap](output_images/heatmap_example.png)
 
 
 Thanks to the lecture notes a lot of functionality required for pipeline were written while going through the lecture.
