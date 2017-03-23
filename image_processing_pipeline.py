@@ -14,29 +14,38 @@ from feature_generation import *
 # load classifier model and data normalizing factors
 with open('data/model.p', 'rb') as f:
     model, X_scaler = pickle.load(f)
-# image frame used for searching vehicle in the image
-im_size=(64, 64)
-# area of image in which vehicle is searched
-ystart=400
-ystop=650
-# image resizing factor
-scale=1
-# HOG Parameters
-orient=9
-pix_per_cell=8
-cell_per_block=2
-# Spacial Image Parameters
-spatial_size=(32, 32)
-# Color Histogram Parameters
-hist_bins=32
-# Temporal frame
-frame_memory=5
-threshold=3
+
+
 frame_buffer=[]
+# Temporal frame
+# threshold=3
+frame_memory=5
 
 def find_cars(im, DEBUG = False):
+    
+    global frame_buffer
+    global model
+    global Xscalar
+
+    # variables initialized
+    # image frame used for searching vehicle in the image
+    im_size=(64, 64)
+    # area of image in which vehicle is searched
+    ystart=400
+    ystop=650
+    # image resizing factor
+    scale=1
+    # HOG Parameters
+    orient=9
+    pix_per_cell=8
+    cell_per_block=2
+    # Spacial Image Parameters
+    spatial_size=(32, 32)
+    # Color Histogram Parameters
+    hist_bins=32
+    
     img = im.astype(np.float32) / 255
-    heatmap = np.zeros_like(img)
+    heatmap = np.zeros_like(img[:,:,0]).astype(float)
 
     img_tosearch = img[ystart:ystop, ...]
     ctrans_tosearch = cv2.cvtColor(img_tosearch, cv2.COLOR_RGB2YCrCb)
@@ -106,7 +115,7 @@ def find_cars(im, DEBUG = False):
                 bottom_right = (xbox_left + win_draw, ytop_draw + win_draw + ystart)
                 if DEBUG:
                     print('area of prediction: ', xbox_left, ytop_draw, win_draw, top_left, bottom_right )
-                add_heat(heatmap, (top_left, bottom_right))
+                heatmap = add_heat(heatmap, (top_left, bottom_right))
 
     add_to_buffer(heatmap)
     avg_heatmap = get_heatmap_from_buffer()
@@ -114,12 +123,14 @@ def find_cars(im, DEBUG = False):
     return draw_labeled_bounding_boxes(im, labels)
 
 def add_to_buffer(heat_map):
+    global frame_memory
     if len(frame_buffer) == frame_memory:
         frame_buffer.pop(0)
     frame_buffer.append(heat_map)
     return
 
 def get_heatmap_from_buffer():
+    threshold = 3
     heatmap_sum = np.zeros_like(frame_buffer[0])
     for heatmap in frame_buffer:
         heatmap_sum = np.add(heatmap_sum, heatmap)

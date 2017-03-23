@@ -49,6 +49,10 @@ To search the cars the pipeline segments the image and so that search is made in
 
 To reduce the number of false positives, I kept a buffer of 5 frames. The vehicle location estimation are made based on the heatmaps generated from 4 temporal and 1 current image frames. To reduce the effect of car estimation of previous frame the pixels of heatmap were set to zero for all pixels with values less then or equal to 3. 
 
+Example of heatmap generated for detected vehicle is shown in below:
+
+![heatmap](output_images/heatmap_examples.png)
+
 
 Thanks to the lecture notes a lot of functionality required for pipeline were written while going through the lecture.
 
