@@ -1,5 +1,7 @@
 ## Vehicle Detection
 
+[![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
+
 In this project, the goal is to write a software pipeline to identify vehicles in a video. The pipeline uses traditional computer vision and machine learning techniques whereby models are learned to detect whether a patch of image is a vehicle/car or not. Further technique discussed in the course is applied to optimize the execution pipeline in terms of search space and time.
 
 
