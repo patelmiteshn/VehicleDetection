@@ -63,12 +63,3 @@ Thanks to the lecture notes a lot of functionality required for pipeline were wr
 * The video of the pipeline which detects the vehicle can be found [![here](https://www.youtube.com/watch?v=-MzRH7fQwEo/0.jpg)](https://www.youtube.com/watch?v=-MzRH7fQwEo)
 
 
-### Self Reflection
-
-Its been a fun working on this project and it has greatly improved my skills and understanting of computer vision and techniques that can be utilized for a variety of problems that I am dealing with different research projects. 
-
-Lots of further tweaking can be done in this project but in wake of time limitation I had to restrict my experimentations. 
-
-As part of future extention I will be working on the following problems:
-* Merging the pipeline of project 4 and 5 so that both lane and vehicle tracking can be done togather.
-* Extend vehicle detection project to also other objects in the image such as pedestrian/trees/traffic signs and rather then classifying vehicle/non-vehicle the classifier can be extended to vehicle/pedestrian/trees/traffic signs/non-vehicle etc. This can eventually lead to my entry in the Udacity car challenge. 
